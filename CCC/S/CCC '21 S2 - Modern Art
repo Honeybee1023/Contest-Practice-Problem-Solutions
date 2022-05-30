@@ -1,0 +1,60 @@
+/*
+Notes:
+- 2D arrays take up lots of memory and time so try not to use them. Instead try to record inputs with simple arrays and use variables to track the indexes/value of the specific output you're required to find
+- If there's a variable with only 2 possible states (2 colors, odd/even, etc.) try using a boolean instead, they're easier to operate with
+*/
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int M; 
+    cin>>M;
+    int N; 
+    cin>>N;
+    int K; 
+    cin>>K;
+    bool rows[M];
+    bool columns[N];
+    for (int a=0; a<M; a++)
+    {
+        rows[a]=false;
+    }
+    for (int b=0; b<N; b++)
+    {
+        columns[b]=false;
+    }
+
+
+    for (int i=0; i<K; i++)
+    {
+        string RC; 
+        cin>>RC;
+        int x; 
+        cin>>x;
+        x--;
+        if (RC == "R")
+        {
+            rows[x]=!rows[x];
+        }
+        else
+        {
+            columns[x]=!columns[x];
+        }
+        
+    }
+    
+    int count = 0;
+    for (int c=0; c<M; c++)
+    {
+        for (int d=0; d<N; d++)
+        {
+            if(rows[c]^columns[d]) //^ means XOR, handy operation to know
+            {
+                count++;
+            }
+        }
+    }
+    cout<<count;
+}
