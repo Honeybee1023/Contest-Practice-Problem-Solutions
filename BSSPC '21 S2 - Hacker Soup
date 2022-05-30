@@ -1,0 +1,43 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    int K;
+    int Q;
+    cin>>N>>K>>Q;
+    
+    int t[K], l[K], b[K], r[K];
+    for (int c=0; c<K; c++)
+    {
+        cin>>t[c]>>l[c]>>b[c]>>r[c];
+        //Remember to read input specification carefully, especially array indexes to know if you need to add or subtract 1.
+        t[c]--;
+        l[c]--;
+        b[c]--;
+        r[c]--;
+    }
+    
+    //2D arrays take up lots of memory and time so try not to use them
+    //Instead try to record inputs with simple arrays and use variables to track the indexes/value of the specific output you're required to find
+    for (int q=0; q<Q; q++)
+    {
+        long int m,n; //always use long for problems that test big numbers
+        cin>>m>>n;
+        m--;
+        n--;
+        for (int k=K-1; k>=0; k--)
+        {
+            if (m>=t[k] and m<=b[k] and n>=l[k] and n<=r[k])
+            {
+                int tempm=m;
+                int tempn=n;
+                m=r[k]-tempn+t[k];
+                n=tempm-t[k]+l[k];
+            }
+        }
+        cout<<fixed<<(m)*N+n+1<<endl; //use fixed to avoid scientific notation and add spaces/endls accordingly to match the expected format
+    }
+    return 0;
+}
