@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int N;
+    cin>>N;
+    int height[N+1];
+    for (int i=0; i<N+1; i++)
+    {
+        cin>>height[i];
+    }
+    int width[N];
+    for (int x=0; x<N; x++)
+    {
+        cin>>width[x];
+    }
+    double long area = 0.0;
+    for (int a=0; a<N; a++)
+    {
+        area = area + 0.5*(height[a]+height[a+1])*width[a];
+    }
+    cout<<fixed<<area; //Use fixed to avoid scientific notation
+}
