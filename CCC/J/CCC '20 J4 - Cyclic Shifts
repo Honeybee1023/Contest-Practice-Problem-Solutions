@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    string t;
+    string s;
+    cin>>t;
+    cin>>s;
+    bool check = false;
+    for (unsigned long int i=0; i<s.length()+1; i++)
+    {
+        if (t.find(s) != string::npos)
+        {
+            check = true;
+            cout << "yes";
+            return 0;
+        }
+        s = s.substr(1) + s.substr(0,1);
+    }
+    if (check == false)
+    {
+        cout<<"no";
+    }
+}
